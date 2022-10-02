@@ -47,19 +47,20 @@ LOGGING = {
         "console": {
             "class": "logging.StreamHandler",
             "formatter": "standard",
-            "level": "ERROR", # ! burda belirtilen level'a göre consoleda gösterilecek veriler belirlenir
+            "level": "ERROR", # ! burda belirtilen level'a göre consoleda gösterilecek log'ları belirliyoruz
             "stream": "ext://sys.stdout",
             },
         'file': {
             'class': 'logging.FileHandler',
             "formatter": "verbose",
             'filename': './debug.log',
-            'level': 'ERROR', # ! burda belirtilen level'a göre ise debug.log'da gösterilecek veriler belirlenir
+            'level': 'ERROR', # ! burda belirtilen level'a göre ise debug.log'da gösterilecek log'ları belirliyoruz
         },
     },
     # A logger is the entry point into the logging system.
     "loggers": {
         "django": {
+            # ! log kayıtlarını nerde tutacağımızı handlers kısmında belirtiyoruz
             "handlers": ["console", 'file'],
             # log level describes the severity of the messages that the logger will handle. 
             "level": config("DJANGO_LOG_LEVEL", "INFO"),

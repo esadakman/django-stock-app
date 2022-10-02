@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     # "debug_toolbar", # ! => settings.dev
     # myApps
+    'user',
  
 
 
