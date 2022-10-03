@@ -5,8 +5,7 @@ from rest_framework import serializers, validators
 from django.contrib.auth.models import User  
 from django.conf import settings
 from django.contrib.auth.password_validation import validate_password
-from rest_framework import status
-from rest_framework.response import Response
+from dj_rest_auth.serializers import TokenSerializer
 
 # User = get_user_model()
 
@@ -38,7 +37,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         default=True,
         read_only=True
     ) 
-    is_staff = serializers.BooleanField( 
+    is_staff = serializers.BooleanField(
         default=False,
         read_only=True
     ) 
@@ -85,7 +84,29 @@ class RegisterSerializer(serializers.ModelSerializer):
         # ? set_password ilede userımızın password'unu set ediyoruz
         user.set_password(password)
         # ! son olarak ise yaptığımız işlemleri save ediyoruz
-        user.save()
-        print(user)
+        user.save() 
         # ? register yazma işlemimizi tamamladığımıza göre views.py'a gidip register'ımıza view yazmalıyız 
         return user
+
+
+# ! User login olduğunda token bilgisinin yanında diğer bilgileride döndürmek için  TokenSerializer'ı overWrite yapmamız gerekiyor 
+# ? tokenla birlikte döndüreceğim verileri belirlemek için yeni bir UserSerializer oluşturuyorum
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        # * göstermek istediğim verileri seçiyorum
+        fields = (
+            'username',
+            'email'
+        )
+
+
+class CustomTokenSerializer(TokenSerializer):
+    user = UserSerializer(read_only=True)
+
+    class Meta(TokenSerializer.Meta):
+        # ? eklemek istediğim field'ları belirtiyorum
+        fields = (
+            'key',
+            'user'
+        )       

@@ -139,8 +139,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 #  "127.0.0.1",
 # ]
 
+# ! token auth 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ]
+}
+
+# ? Token serializer'i overwrite edeceğimiz için ⬇️
+REST_AUTH_SERIALIZERS = {
+    'TOKEN_SERIALIZER': 'users.serializers.CustomTokenSerializer',
 }
