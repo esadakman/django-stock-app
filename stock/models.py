@@ -38,6 +38,9 @@ class Product(models.Model):
         Brand, related_name="prod_brand", on_delete=models.CASCADE)
     stock = models.SmallIntegerField()
 
+    def __str__(self):
+        return f'{self.name} - {self.brand} '
+
 
 class Stock(models.Model):
     TRANSACTION_TYPE = (
@@ -52,7 +55,7 @@ class Stock(models.Model):
         Product, on_delete=models.CASCADE, related_name="products")
     quantity = models.SmallIntegerField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
-
+    
     @property
     def price_total(self):
         return self.quantity * int(self.price)
