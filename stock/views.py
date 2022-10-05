@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .models import Brand, Category, Product, Firm
-from .serializers import CategorySerializer,  BrandSerializer, ProductSerializer, FirmSerializer
+from .models import Brand, Category, Product, Firm,Stock
+from .serializers import CategorySerializer,  BrandSerializer, ProductSerializer, FirmSerializer, StockSerializer
 
 # Create your views here.
 
@@ -25,3 +25,7 @@ class ProductView(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     fields = ["id", "name", "category",  "brand",  "stock"] 
     serializer_class = ProductSerializer
+
+class StockView(viewsets.ModelViewSet):
+    queryset = Stock.objects.all()
+    serializer_class = StockSerializer

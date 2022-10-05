@@ -30,3 +30,12 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = ("id", "name", "category", "category_id", "brand", "brand_id", "stock")
         # fields = ("id", "name", "category", "brand",  "stock")
+
+
+class StockSerializer(serializers.ModelSerializer):
+    product = serializers.StringRelatedField(read_only=True)
+    product_id = serializers.IntegerField()
+    class Meta:
+        model = Stock
+        fields = ("id", "firm", "transaction", "product",
+                  "product_id", "quantity", "price", "price_total")
