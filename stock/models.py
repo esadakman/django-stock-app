@@ -49,13 +49,13 @@ class Stock(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     firm = models.ForeignKey(Firm,
-                                  on_delete=models.CASCADE, related_name="company")
+                             on_delete=models.CASCADE, related_name="company")
     transaction = models.CharField(max_length=10, choices=TRANSACTION_TYPE)
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, related_name="products")
     quantity = models.SmallIntegerField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
-    
+
     @property
     def price_total(self):
         return self.quantity * int(self.price)
