@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Brand, Category, Product, Firm,Stock
 from .serializers import CategorySerializer,  BrandSerializer, ProductSerializer, FirmSerializer, StockSerializer
-
+from django_filters.rest_framework import DjangoFilterBackend
 # Create your views here.
 
 
@@ -29,3 +29,4 @@ class ProductView(viewsets.ModelViewSet):
 class StockView(viewsets.ModelViewSet):
     queryset = Stock.objects.all()
     serializer_class = StockSerializer
+    

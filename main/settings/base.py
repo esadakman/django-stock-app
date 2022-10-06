@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'dj_rest_auth',
     'drf_yasg',
+    'django_filters',
     # "debug_toolbar", # ! => settings.dev
+    
     # myApps
     'users',
     'stock',

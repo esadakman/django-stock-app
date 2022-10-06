@@ -13,6 +13,8 @@ class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
         fields = ("id", "name")
+
+
 class FirmSerializer(serializers.ModelSerializer):
     class Meta:
         model = Firm
@@ -22,20 +24,26 @@ class FirmSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     # * category  ksımında kategorinin ismini görmek için read_only değerlerini=True yapıyoruz
     category = serializers.StringRelatedField(read_only=True)
-    category_id = serializers.IntegerField()
+    category_id = serializers.IntegerField(write_only=True)
     brand = serializers.StringRelatedField(read_only=True)
-    brand_id = serializers.IntegerField()
-
+    brand_id = serializers.IntegerField(write_only=True)
+    stock = serializers.IntegerField(read_only=True)
     class Meta:
         model = Product
-        fields = ("id", "name", "category", "category_id", "brand", "brand_id", "stock")
-        # fields = ("id", "name", "category", "brand",  "stock")
+        fields = ("id", "name", "category", "category_id",
+                  "brand", "brand_id", "stock")
+
+    # fields = ("id", "name", "category", "brand",  "stock")
 
 
 class StockSerializer(serializers.ModelSerializer):
     product = serializers.StringRelatedField(read_only=True)
-    product_id = serializers.IntegerField()
+    user = serializers.StringRelatedField(read_only=True)
+    product_id = serializers.IntegerField(write_only= True)
+    firm = serializers.StringRelatedField(read_only=True)
+    firm_id = serializers.IntegerField(write_only= True)
+
     class Meta:
         model = Stock
-        fields = ("id", "firm", "transaction", "product",
+        fields = ("id", "user","firm", "firm_id", "transaction", "product",
                   "product_id", "quantity", "price", "price_total")
