@@ -42,17 +42,17 @@ class Product(models.Model):
         return f'{self.name} - {self.brand} '
 
 
-class Stock(models.Model):
+class Transaction(models.Model):
     TRANSACTION_TYPE = (
         ("1", "IN"),
         ("2", "OUT"),
     )
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     firm = models.ForeignKey(Firm,
-                             on_delete=models.CASCADE, related_name="company")
+                            on_delete=models.SET_NULL, null=True, related_name="transactions")
     transaction = models.CharField(max_length=10, choices=TRANSACTION_TYPE)
     product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, related_name="products")
+        Product, on_delete=models.CASCADE, related_name="transaction")
     quantity = models.SmallIntegerField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
 

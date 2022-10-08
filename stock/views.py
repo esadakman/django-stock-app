@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets, filters
-from .models import Brand, Category, Product, Firm,Stock
-from .serializers import CategorySerializer,  BrandSerializer, ProductSerializer, FirmSerializer, StockSerializer
+from .models import Brand, Category, Product, Firm,Transaction
+from .serializers import CategorySerializer,  BrandSerializer, ProductSerializer, FirmSerializer, TransactionSerializer
 from django_filters.rest_framework import DjangoFilterBackend 
 # * filtreleme işlemi yapmak için django-filtersı yükledik ve apps'e 'django_filters' ı ekledikten sonra viewsımızda import edip kullanıma hazır hale getirdik
 # Create your views here.
@@ -39,9 +39,9 @@ class ProductView(viewsets.ModelViewSet):
     filterset_fields = ['category', 'brand'] 
     search_fields = ['name']
 
-class StockView(viewsets.ModelViewSet):
-    queryset = Stock.objects.all()
-    serializer_class = StockSerializer
+class TransactionView(viewsets.ModelViewSet):
+    queryset = Transaction.objects.all()
+    serializer_class = TransactionSerializer
     # ! filtreleme yaparken iki ayrı filter kullanacağımız için iki filtrs'ımızıda yazıyoruz
     filter_backends = [DjangoFilterBackend,filters.SearchFilter] 
     # ? ardından ise filterset_fields kısmında filterlamak istediğimiz parametreleri belirtiyoruz 
