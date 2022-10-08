@@ -25,5 +25,5 @@ def update_stock(sender, instance, **kwargs):
             product.stock += instance.quantity
     else:
         product.stock -= instance.quantity
-    
+    # ? stock değerinin 0'ın altına düşmesi durumunda kullanıcıya error mesajının JSON responseda dönmesini istiyroum, bu yüzden bu işlemi serializers.py'da gerçekleştireceğiz
     product.save()

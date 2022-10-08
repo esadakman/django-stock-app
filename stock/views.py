@@ -48,3 +48,6 @@ class TransactionView(viewsets.ModelViewSet):
     # ! product'tan sonra ''product__name'' yazarak product'ın name'ine ulaşabilirim
     filterset_fields = ['product', 'firm', 'transaction'] 
     search_fields = ['firm']
+    # ! user kısmına aktif userın eklenmesi için  
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
