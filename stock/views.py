@@ -47,4 +47,4 @@ class TransactionView(viewsets.ModelViewSet):
     # ? ardından ise filterset_fields kısmında filterlamak istediğimiz parametreleri belirtiyoruz 
     # ! product'tan sonra ''product__name'' yazarak product'ın name'ine ulaşabilirim
     filterset_fields = ['product', 'firm', 'transaction'] 
-    search_fields = ['product__name']
+    search_fields = ['firm']
