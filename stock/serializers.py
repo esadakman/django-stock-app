@@ -64,3 +64,5 @@ class TransactionSerializer(serializers.ModelSerializer):
                 )
         # ? son olarakta data'mızı return ediyoruz
         return data
+
+ 
