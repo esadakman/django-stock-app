@@ -32,22 +32,22 @@ class RegisterSerializer(serializers.ModelSerializer):
         style={"input_type": "password"}
     )
 
-    # ! is_active, is_staff ve is_superuser değerlerinin sadece admin tarafından yönetilebilmesi için default değerlerini değiştirdim ve read_only değerlerini True yaptım
-    is_active = serializers.BooleanField(
-        default=True,
-        read_only=True
-    ) 
-    is_staff = serializers.BooleanField(
-        default=False,
-        read_only=True
-    ) 
-    is_superuser = serializers.BooleanField(
-        default=False,
-        read_only=True
-    ) 
-    date_joined = serializers.DateTimeField( 
-        read_only=True 
-    )  
+    # # ! is_active, is_staff ve is_superuser değerlerinin sadece admin tarafından yönetilebilmesi için default değerlerini değiştirdim ve read_only değerlerini True yaptım
+    # is_active = serializers.BooleanField(
+    #     default=True,
+    #     read_only=True
+    # ) 
+    # is_staff = serializers.BooleanField(
+    #     default=False,
+    #     read_only=True
+    # ) 
+    # is_superuser = serializers.BooleanField(
+    #     default=False,
+    #     read_only=True
+    # ) 
+    # date_joined = serializers.DateTimeField( 
+    #     read_only=True 
+    # )  
 
     class Meta:
         model = User
@@ -58,10 +58,10 @@ class RegisterSerializer(serializers.ModelSerializer):
             'last_name',
             'password',
             'password1',
-            'is_staff',
-            'is_active',
-            'is_superuser',
-            'date_joined',
+            # 'is_staff',
+            # 'is_active',
+            # 'is_superuser',
+            # 'date_joined',
             # 'last_login'
         )
 

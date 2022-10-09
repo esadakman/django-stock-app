@@ -37,9 +37,9 @@ class ProductSerializer(serializers.ModelSerializer):
     read_only_fields = ('stock',)
 
 
-# ! category  içerisinde herhangi bir arama yapıldığı zaman aynı zaman o categoriye ait ürünlerinde listelenmesi için nested serializer kullanıyoruz
+# ! category  içerisinde herhangi bir arama yapıldığı zaman aynı zaman o categoriye ait productlarında listelenmesi için nested serializer kullanıyoruz
 class CategoryProductsSerializer(serializers.ModelSerializer):
-    #! Product modelında category için kullanmış olduğumuz related_name'i kullanıyoruz
+    #! Product modelında category için kullanmış olduğumuz related_name'i kullanıyoruz ve bu product's artık category'e ait bir field olarak kullanabiliriz
     # ? Category'e ait birden fazla product bulunabileceği için many=True yazıyoruz
     prod_category = ProductSerializer(many=True) 
     class Meta:
