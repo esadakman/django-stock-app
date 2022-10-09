@@ -39,9 +39,9 @@ class Product(models.Model):
         Brand, related_name="prod_brand", on_delete=models.CASCADE)
     stock = models.SmallIntegerField(blank=True, null=True)
 
-
     def __str__(self):
         return f'{self.name} - {self.brand} '
+ 
 
 
 class Transaction(models.Model):
@@ -51,12 +51,12 @@ class Transaction(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     firm = models.ForeignKey(Firm,
-                            on_delete=models.SET_NULL, null=True, related_name="transactions")
-    transaction = models.SmallIntegerField( choices=TRANSACTION_TYPE)
+                             on_delete=models.SET_NULL, null=True, related_name="transactions")
+    transaction = models.SmallIntegerField(choices=TRANSACTION_TYPE)
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, related_name="transaction")
     quantity = models.SmallIntegerField()
-    price = models.DecimalField(max_digits=8, decimal_places=2) 
+    price = models.DecimalField(max_digits=8, decimal_places=2)
     # ? price_total'ımızın otamatik hesaplanması için blank=True dedik
     price_total = models.DecimalField(
         max_digits=8, decimal_places=2, blank=True)

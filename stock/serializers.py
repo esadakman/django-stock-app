@@ -28,6 +28,7 @@ class ProductSerializer(serializers.ModelSerializer):
     brand = serializers.StringRelatedField(read_only=True)
     brand_id = serializers.IntegerField(write_only=True)
     # stock = serializers.IntegerField(read_only=True)
+
     class Meta:
         model = Product
         fields = ("id", "name", "category", "category_id",
@@ -36,16 +37,29 @@ class ProductSerializer(serializers.ModelSerializer):
     read_only_fields = ('stock',)
 
 
+# ! category  içerisinde herhangi bir arama yapıldığı zaman aynı zaman o categoriye ait ürünlerinde listelenmesi için nested serializer kullanıyoruz
+class CategoryProductsSerializer(serializers.ModelSerializer):
+    #! Product modelında category için kullanmış olduğumuz related_name'i kullanıyoruz
+    # ? Category'e ait birden fazla product bulunabileceği için many=True yazıyoruz
+    prod_category = ProductSerializer(many=True) 
+    class Meta:
+        model = Category
+        fields = (
+            'name',
+            'prod_category'
+        )
+
+
 class TransactionSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField(read_only=True)
     firm = serializers.StringRelatedField(read_only=True)
-    firm_id = serializers.IntegerField(write_only= True, required=False)
+    firm_id = serializers.IntegerField(write_only=True, required=False)
     product = serializers.StringRelatedField(read_only=True)
-    product_id = serializers.IntegerField(write_only= True, required=False)
+    product_id = serializers.IntegerField(write_only=True, required=False)
 
     class Meta:
         model = Transaction
-        fields = ("id", "user","firm", "firm_id", "transaction", "product",
+        fields = ("id", "user", "firm", "firm_id", "transaction", "product",
                   "product_id", "quantity", "price", "price_total")
         read_only_fields = ('price_total',)
 
@@ -53,7 +67,7 @@ class TransactionSerializer(serializers.ModelSerializer):
     def validate(self, data):
         # ? data.get diyerek ulaşmak istediğimiz değere ulaşıyoruz
         if data.get('transaction') == 0:
-        # ? ardından ulaşmak istediğim product'ı belirtmem gerekiyor ve bunuda id ile belirliyoruz
+            # ? ardından ulaşmak istediğim product'ı belirtmem gerekiyor ve bunuda id ile belirliyoruz
             product = Product.objects.get(id=data.get('product_id'))
         # ? product'ıda belirledikten sonra quantity'imizin işlem için geçerliliğini kontrol ediyoruz
             if data.get('quantity') > product.stock:
