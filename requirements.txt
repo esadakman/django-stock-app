@@ -88,8 +88,8 @@ python-decouple==3.6
 python-slugify==6.1.1
 python3-openid==3.2.0
 pytz==2022.4
-pywin32==303
-pywinpty==2.0.2
+# pywin32==303
+# pywinpty==2.0.2
 pyzmq==22.3.0
 rcssmin==1.1.0
 requests==2.28.1
