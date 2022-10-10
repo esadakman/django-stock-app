@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'dj_rest_auth',
     'django_filters',
     "debug_toolbar",
+    'drf_yasg',
 
     # myapp
     'users',
