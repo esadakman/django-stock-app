@@ -62,4 +62,4 @@ class Transaction(models.Model):
         max_digits=8, decimal_places=2, blank=True)
 
     def __str__(self):
-        return f'{self.transaction} - {self.product} - {self.quantity}'
+        return f'{self.transaction} - {self.product} - {self.quantity}' 
