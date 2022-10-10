@@ -16,6 +16,8 @@
 ## Table of Contents
 
 - [Acknowledgements](#acknowledgements)
+- [Informations](#informations)
+- [Entity Relationship Diagram](#entity-relationship-diagram)
 - [Overview](#overview)
 - [Built With](#built-with)
 - [Project Structure](#project-structure)
@@ -29,10 +31,38 @@
     - register/login/logout
     - CRUD operations for Product,Transaction,Firm, Brand, and Category acoording to user's role
 
-<!-- OVERVIEW -->
+## Informations
+
+##### User Roles (You can set it from the admin panel.)
+
+  - Manager:
+    - Authorized all CRUD operations in Stock App 
+  - Product_Manager:
+    - Authorized all CRUD operations in Category, Brand, Firm, Product tables
+  - Finance:
+    - Authorized all CRUD operations in Transaction table and read only other tables
+  - Read_Only:
+    - Authorized only read operations in all tables
+
+##### Transactions Operations
+
+  - Transaction field, which in Transaction table, determines the type of stock object. 
+  - If the transaction is 'IN' stock of product object is recalculating.
+  - If the transaction is 'OUT' we are checking stock of product in Product table if there is enough stock. In the case of does not enough stock in product we are raising ValidationError otherwise we are recalculating the stock of product object.
+  - Price_total field, which in Stock table, is read_only field and we are calculating this value with quantity and price fields.
+  - All views have filter and search features. 
+  - In addition to the filters in category views we have also nested serializer which shows us products belonging to categories. 
+
+<!-- ERD -->
+## Entity Relationship Diagram
+
+![Entity Relationship Diagram](https://user-images.githubusercontent.com/98649983/194851017-083393e4-53ef-425d-869c-903d8515fdaa.jpg)
+ 
+ <!-- OVERVIEW -->
 ## Overview
 
- 
+![stock-app](https://user-images.githubusercontent.com/98649983/194851648-3e22780b-7e5c-481f-aabc-facc261b485b.gif)
+
 
 
 
@@ -52,7 +82,7 @@
 ## Project Structure
 
 ```bash
-.──── django-flight-app (repo)
+.──── django-stock-app (repo)
 │
 ├── main
 │     ├── __pycache__ 
