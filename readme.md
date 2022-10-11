@@ -1,37 +1,36 @@
-# django-stock-app (capstone) 
 <!-- Please update value in the {}  -->
 
 <h1 align="center">Django Stock App</h1>
 
-<div align="center">
+<!-- <div align="center">
   <h3> 
     <a href="https://github.com/esadakman/django-stock-app">
       Project
     </a> 
   </h3>
-</div>
+</div> -->
 
 <!-- TABLE OF CONTENTS -->
 
 ## Table of Contents
 
-- [Acknowledgements](#acknowledgements)
-- [Informations](#informations)
-- [Entity Relationship Diagram](#entity-relationship-diagram)
 - [Overview](#overview)
+- [Project Info](#projectinfo)
+- [Entity Relationship Diagram](#entity-relationship-diagram)
+- [Preview](#preview-of-the-project)
 - [Built With](#built-with)
 - [Project Structure](#project-structure)
 - [How to use](#how-to-use)
 - [Contact](#contact)
 
 
-## Acknowledgements
+## Overview
 
 - I created a Stock Manegement API with Django Rest Framework that allows users to
     - register/login/logout
     - CRUD operations for Product,Transaction,Firm, Brand, and Category acoording to user's role
 
-## Informations
+## Project Info
 
 ##### User Roles (You can set it from the admin panel.)
 
@@ -59,7 +58,7 @@
 ![Entity Relationship Diagram](https://user-images.githubusercontent.com/98649983/194851017-083393e4-53ef-425d-869c-903d8515fdaa.jpg)
  
  <!-- OVERVIEW -->
-## Overview
+## Preview of the Project
 
 ![stock-app](https://user-images.githubusercontent.com/98649983/194851648-3e22780b-7e5c-481f-aabc-facc261b485b.gif)
 
@@ -147,13 +146,13 @@ $ git clone https://github.com/esadakman/django-stock-app
 
 - Create a .env file for =>
   -- SECRET_KEY,
-  -- ENV_NAME  
-  -- DEBUG value, 
-  -- SQL_DATABASE,
-  -- SQL_USER,
-  -- SQL_PASSWORD,
-  -- SQL_HOST and
-  -- SQL_PORT values
+  -- ENV_NAME=dev # switch to prod when in production  
+  -- DEBUG=True, # switch to False when in production
+  -- SQL_DATABASE='dbName',
+  -- SQL_USER='dbUserName',
+  -- SQL_PASSWORD='dbPassword',
+  -- SQL_HOST=localhost and
+  -- SQL_PORT=5432 
 
 - After these you can run the project as usual => 
 
